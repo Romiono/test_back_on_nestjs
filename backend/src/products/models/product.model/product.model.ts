@@ -1,7 +1,8 @@
 import { Column, Model, Table, DataType } from 'sequelize-typescript';
+import { CreateProductDto } from '../../dto/create-product.dto/create-product.dto';
 
 @Table({ tableName: 'products' })
-export class ProductModel extends Model<ProductModel> {
+export class ProductModel extends Model<ProductModel, CreateProductDto> {
   @Column({ type: DataType.INTEGER, autoIncrement: true, primaryKey: true })
   id: number;
 
