@@ -31,14 +31,11 @@ export class PaymentsService {
     const payment = await this.paymentModel.create({
       orderId: dto.orderId,
       amount: dto.amount,
-      paymentMethod: dto.paymentMethod,
       status: 'pending',
-      paymentDate: new Date(),
     });
 
     // Обновляем статус заказа, если платёж успешен
-    await order.update({ status: 'paid' });
-
+    await order.update({ status: 'paid', paymentDueDate: new Date() });
     return payment;
   }
 

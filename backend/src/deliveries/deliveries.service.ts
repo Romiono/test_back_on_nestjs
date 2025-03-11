@@ -8,6 +8,7 @@ import { DeliveryModel } from './models/delivery.model/delivery.model';
 import { OrderModel } from '../orders/models/order.model/order.model';
 import { CreateDeliveryDto } from './dto/create-delivery.dto/create-delivery.dto';
 import { UpdateDeliveryDto } from './dto/update-delivery.dto/update-delivery.dto';
+import {ClientModel} from "../clients/models/client.model/client.model";
 
 @Injectable()
 export class DeliveriesService {
@@ -30,12 +31,10 @@ export class DeliveriesService {
 
     const delivery = await this.deliveryModel.create({
       orderId: dto.orderId,
-      deliveryAddress: dto.deliveryAddress,
       deliveryDate: dto.deliveryDate,
       status: 'pending',
     });
 
-    // Обновляем статус заказа
     await order.update({ status: 'shipped' });
 
     return delivery;
@@ -59,7 +58,6 @@ export class DeliveriesService {
     const delivery = await this.findOne(id);
     await delivery.update(dto);
 
-    // Если доставка завершена, обновляем статус заказа
     if (dto.status === 'delivered') {
       const order = await this.orderModel.findByPk(delivery.orderId);
       if (order) {
