@@ -1,4 +1,3 @@
-// clients/clients.controller.ts
 import {
   Controller,
   Get,

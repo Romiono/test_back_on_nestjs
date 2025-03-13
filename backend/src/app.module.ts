@@ -14,21 +14,23 @@ import { OrderModel } from './orders/models/order.model/order.model';
 import { OrderItemModel } from './orders/models/order-item.model/order-item.model';
 import { PaymentModel } from './payments/models/payment.model/payment.model';
 import { ProductModel } from './products/models/product.model/product.model';
+import * as process from "node:process";
+import {ConfigModule} from "@nestjs/config";
 
 @Module({
   controllers: [AppController],
   providers: [AppService],
   imports: [
-    // ConfigModule.forRoot({
-    //   envFilePath: '.env',
-    // }),
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+    }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '1234',
-      database: 'polupanov_m',
+      host: process.env.POSTGRES_HOST,
+      port: Number(process.env.POSTGRES_PORT),
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
       models: [
         ClientModel,
         DeliveryModel,

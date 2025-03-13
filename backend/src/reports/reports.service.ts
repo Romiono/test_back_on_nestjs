@@ -4,7 +4,8 @@ import { InjectModel } from '@nestjs/sequelize';
 import { OrderModel } from '../orders/models/order.model/order.model';
 import { ReportFilterDto } from './dto/report-filter.dto/report-filter.dto';
 import { ClientOrdersReportDto } from './dto/client-orders-report.dto/client-orders-report.dto';
-import { Op } from 'sequelize';
+import {Op, fn, col, Sequelize, where} from 'sequelize';
+
 
 @Injectable()
 export class ReportsService {
@@ -14,8 +15,10 @@ export class ReportsService {
     async getDeliverableOrdersReport(dto: ReportFilterDto) {
         const orders = await this.orderModel.findAll({
             where: {
-                status: 'paid', // Только оплаченные заказы готовы к доставке
-                orderDate: dto.date,
+                status: 'paid',
+                [Op.and]: [
+                    where(fn('DATE', col('orderDate')), '=', dto.date)
+                ]
             },
             include: [{ all: true }],
         });
