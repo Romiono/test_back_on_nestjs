@@ -8,7 +8,7 @@ import { DeliveryModel } from './models/delivery.model/delivery.model';
 import { OrderModel } from '../orders/models/order.model/order.model';
 import { CreateDeliveryDto } from './dto/create-delivery.dto/create-delivery.dto';
 import { UpdateDeliveryDto } from './dto/update-delivery.dto/update-delivery.dto';
-import {ClientModel} from "../clients/models/client.model/client.model";
+import { ClientModel } from '../clients/models/client.model/client.model';
 
 @Injectable()
 export class DeliveriesService {

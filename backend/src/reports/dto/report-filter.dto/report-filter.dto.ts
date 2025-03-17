@@ -1,3 +1,3 @@
 export class ReportFilterDto {
-    date: Date; // Дата формирования отчета
+  date: Date; // Дата формирования отчета
 }

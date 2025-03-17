@@ -14,8 +14,8 @@ import { OrderModel } from './orders/models/order.model/order.model';
 import { OrderItemModel } from './orders/models/order-item.model/order-item.model';
 import { PaymentModel } from './payments/models/payment.model/payment.model';
 import { ProductModel } from './products/models/product.model/product.model';
-import * as process from "node:process";
-import {ConfigModule} from "@nestjs/config";
+import * as process from 'node:process';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   controllers: [AppController],

@@ -7,8 +7,8 @@ import {
   BelongsTo,
 } from 'sequelize-typescript';
 import { OrderModel } from '../../../orders/models/order.model/order.model';
-import {CreatePaymentDto} from "../../dto/create-payment.dto/create-payment.dto";
-import {UpdatePaymentDto} from "../../dto/update-payment.dto/update-payment.dto";
+import { CreatePaymentDto } from '../../dto/create-payment.dto/create-payment.dto';
+import { UpdatePaymentDto } from '../../dto/update-payment.dto/update-payment.dto';
 
 type Dto = CreatePaymentDto | UpdatePaymentDto;
 @Table({ tableName: 'payments' })
