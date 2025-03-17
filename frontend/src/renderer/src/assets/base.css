@@ -28,7 +28,7 @@
   --color-background-soft: var(--ev-c-black-soft);
   --color-background-mute: var(--ev-c-black-mute);
 
-  --color-text: var(--ev-c-text-1);
+  --color-text: var(--color-background-soft);
 }
 
 *,
@@ -39,14 +39,10 @@
   font-weight: normal;
 }
 
-ul {
-  list-style: none;
-}
-
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
+  background: var(--ev-c-white-soft);
   line-height: 1.6;
   font-family:
     Inter,
