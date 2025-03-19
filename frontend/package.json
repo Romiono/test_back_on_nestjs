@@ -30,6 +30,7 @@
     "@mui/x-date-pickers": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "axios": "^1.8.3",
     "dayjs": "^1.11.13",
     "electron-updater": "^6.3.9",
     "react-router": "^7.3.0",

@@ -2,12 +2,13 @@ import classes from "./ReportByUser.module.scss";
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {Dayjs} from "dayjs";
-import {Button, IconButton} from "@mui/material";
-import {useState} from "react";
+import { Button, IconButton, MenuItem, Select } from '@mui/material';
+import { useEffect, useState } from 'react';
 import {User} from "@renderer/types/UserType";
 import {Date} from "@renderer/types/DateType";
 import LogoutIcon from "@mui/icons-material/Logout";
 import {useCustomNavigate} from "@renderer/helpers/navigateHandler";
+import { UserApi } from '@renderer/api/UserApi';
 
 
 const ReportByUserPage = () => {
@@ -15,6 +16,14 @@ const ReportByUserPage = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
   const navigate = useCustomNavigate();
+  useEffect(() => {
+    fetchUsers().then((res) => console.log(res));
+  }, []);
+
+  const fetchUsers = async (): Promise<void> => {
+    const clients = await UserApi.getAll();
+    setUsers(clients);
+  }
   return (
     <div className={classes.main}>
       <div className={classes.main__content}>
@@ -42,6 +51,18 @@ const ReportByUserPage = () => {
               }}
             />
           </LocalizationProvider>
+          <Select
+            value={selectedUserId}
+            label="Выберитье пользователя"
+            onChange={(e) => {
+              const value = e.target.value;
+              setSelectedUserId(value ? Number(value) : null); // Проверяем перед преобразованием
+            }}
+          >
+            {users.map((user) => (
+              <MenuItem key={user.id} value={user.id}>{user.name}</MenuItem>
+            ))}
+          </Select>
           <div className={classes.main__content__recordByRange__buttonGroup}>
             <IconButton sx={{borderRadius:'5px', height: "100%", aspectRatio: '1/1'}} onClick={(e) => navigate(e)} name={''}>
               <LogoutIcon/>
