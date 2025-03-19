@@ -1,55 +1,16 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import classes from './MainPage.module.scss';
-import { Button } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { Dayjs } from 'dayjs';
+import {Button} from "@mui/material";
+import {useCustomNavigate} from "@renderer/helpers/navigateHandler";
 
-interface Date {
-  formatedDate: string;
-  date: Dayjs;
-}
 
 const MainPage = (): ReactElement => {
-const [date, setDate] = useState<Date | null>(null);
-
+  const navigate = useCustomNavigate()
   return (
     <div className={classes.main}>
       <div className={classes.main__content}>
-        <div className={classes.main__content__recordByDate}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              label="Выберите дату"
-              value={null}
-              onChange={(value: Dayjs | null) => {
-                if(value === null) return;
-                const formatedDate = value.format('YYYY-MM-DD');
-                setDate({ date: value, formatedDate });
-                console.log(date);
-              }}
-            />
-          </LocalizationProvider>
-          <Button variant={'contained'} sx={{ height: '100%' }}>
-            Получить отчет
-          </Button>
-        </div>
-        <div className={classes.main__content__recordByDate}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              label="Выберите дату"
-              value={null}
-              onChange={(value: Dayjs | null) => {
-                if(value === null) return;
-                const formatedDate = value.format('YYYY-MM-DD');
-                setDate({ date: value, formatedDate });
-                console.log(date);
-              }}
-            />
-          </LocalizationProvider>
-          <Button variant={'contained'} sx={{ height: '100%' }}>
-            Получить отчет
-          </Button>
-        </div>
+        <Button variant={'contained'} size={'large'} name={'reportByDate'} onClick={(e) => navigate(e)}>Получить отчет по дате</Button>
+        <Button variant={'contained'} size={'large'} name={'reportByUser'} onClick={(e) => navigate(e)}>Получить отчет по пользователю</Button>
       </div>
     </div>
   );

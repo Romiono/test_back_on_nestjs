@@ -10,6 +10,16 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    &__recordByRange {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+      &__buttonGroup {
+        display: flex;
+        gap: 10px;
+        height: 56px;
+      }
+    }
   }
 }
 
