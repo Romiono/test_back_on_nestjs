@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import { ReactElement } from 'react';
 import MainPage from '@renderer/pages/MainPage/MainPage';
 
 function App(): ReactElement {
@@ -6,7 +6,7 @@ function App(): ReactElement {
     <>
       <MainPage />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

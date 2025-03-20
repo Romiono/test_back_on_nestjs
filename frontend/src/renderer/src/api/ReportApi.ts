@@ -1,12 +1,12 @@
 import axios from 'axios';
-import fileDownload from "js-file-download";
+import fileDownload from 'js-file-download';
 
 export class ReportApi {
   static async GetReportByDate(date: string) {
     try {
       const { data } = await axios.get('http://localhost:5000/reports/deliverable-orders', {
         params: {
-          date: date,
+          date: date
         }
       });
       return data;
@@ -17,21 +17,16 @@ export class ReportApi {
   }
 
   static async GetReportByDateXlsx(date: string) {
-      try {
-        const { data } = await axios.get(
-          `http://localhost:5000/reports/deliverable-orders-xlsx`,
-          {
-            params: { date },
-            responseType: "blob",
-          }
-        );
-        fileDownload(data, `report-${date}.xlsx`);
-      } catch (error) {
-        console.error("$:", error);
-      }
-    };
-
-
+    try {
+      const { data } = await axios.get(`http://localhost:5000/reports/deliverable-orders-xlsx`, {
+        params: { date },
+        responseType: 'blob'
+      });
+      fileDownload(data, `report-${date}.xlsx`);
+    } catch (error) {
+      console.error('$:', error);
+    }
+  }
 
   static async GetReportByUser(dateRange: string[], clientId: number) {
     const [startDate, endDate] = dateRange;
@@ -40,7 +35,7 @@ export class ReportApi {
         params: {
           startDate,
           endDate,
-          clientId,
+          clientId
         }
       });
       return data;
@@ -57,7 +52,7 @@ export class ReportApi {
         params: {
           startDate,
           endDate,
-          clientId,
+          clientId
         },
         responseType: 'blob'
       });
